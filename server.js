@@ -5,9 +5,10 @@ const PORT = process.env.PORT || 3000;
 
 // Authentication using your downloaded service account key
 const auth = new google.auth.GoogleAuth({
-  keyFile: "sheet-reader-key.json",
-  scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
 });
+
 
 app.get("/data", async (req, res) => {
   try {
